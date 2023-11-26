@@ -1,0 +1,10 @@
+//let problem1 = require("../fs-problem1.cjs");
+//problem1("/home/saikrishna/Documents/fs/sample", 10);
+//const callbackproblem1 = require("../callback-fs-problem1.cjs");
+//const fsPromisProblem1 = require("../fs-promises-fs-problem1.cjs");
+//console.log("using call backs");
+//callbackproblem1("/home/saikrishna/Documents/fs/sample", 10);
+//console.log("using fs.promises");
+//fsPromisProblem1("/home/saikrishna/Documents/fs/sample", 3);
+let problem1 = require("../user-promise-fs-problem1.js");
+problem1("/home/saikrishna/Documents/fs/sample", 3);
