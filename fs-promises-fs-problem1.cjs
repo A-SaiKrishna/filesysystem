@@ -22,31 +22,43 @@ function deletingFile(currentfile) {
   });
 }
 
+function recursiveCall(currFile, limit) {
+  creatingFile(currFile, limit)
+    .then(function (data) {
+      console.log("created file" + currFile);
+      return deletingFile(currFile);
+    })
+    .then(function () {
+      console.log("deleted file" + currFile);
+      return recursiveCall(currFile + 1, limit);
+    });
+}
 function fsPromisProblem1(dir, limit) {
   dirr = dir;
-  creatingFile(1, limit)
-    .then(function (data1) {
-      console.log("successfully created the file1");
-      return deletingFile(1);
-    })
-    .then(function (data2) {
-      console.log("deleted the file-1");
-      return creatingFile(2, limit);
-    })
-    .then(function (data3) {
-      console.log("creating the file2");
-      return deletingFile(2);
-    })
-    .then(function (data4) {
-      console.log("deleted the file-2");
-      return creatingFile(3, limit);
-    })
-    .then(function (data5) {
-      console.log("created the file-3");
-      return deletingFile(3);
-    })
-    .then(function (data6) {
-      console.log("deleted the file-3");
-    });
+  // creatingFile(1, limit)
+  //   .then(function (data1) {
+  //     console.log("successfully created the file1");
+  //     return deletingFile(1);
+  //   })
+  //   .then(function (data2) {
+  //     console.log("deleted the file-1");
+  //     return creatingFile(2, limit);
+  //   })
+  //   .then(function (data3) {
+  //     console.log("creating the file2");
+  //     return deletingFile(2);
+  //   })
+  //   .then(function (data4) {
+  //     console.log("deleted the file-2");
+  //     return creatingFile(3, limit);
+  //   })
+  //   .then(function (data5) {
+  //     console.log("created the file-3");
+  //     return deletingFile(3);
+  //   })
+  //   .then(function (data6) {
+  //     console.log("deleted the file-3");
+  //   });
+  recursiveCall(1, limit);
 }
 module.exports = fsPromisProblem1;

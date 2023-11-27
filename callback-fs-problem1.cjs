@@ -41,23 +41,33 @@ function deletingFile(fileNumber, cb) {
     }
   });
 }
+function recursiveCall(currentFile, numOfFiles) {
+  creatingFile(currentFile, numOfFiles, function () {
+    deletingFile(currentFile, function () {
+      recursiveCall(currentFile + 1, numOfFiles);
+    });
+  });
+}
 
 function callback(dirr, numOfFiles) {
   dir = dirr;
-  creatingDir(dirr, function () {
-    creatingFile(1, 3, function () {
-      deletingFile(1, function () {
-        creatingFile(2, 3, function () {
-          deletingFile(2, function () {
-            creatingFile(3, 3, function () {
-              deletingFile(3, function () {
-                console.log("successfully completed using call backs");
-              });
-            });
-          });
-        });
-      });
-    });
+  // creatingDir(dirr, function () {
+  //   creatingFile(1, 3, function () {
+  //     deletingFile(1, function () {
+  //       creatingFile(2, 3, function () {
+  //         deletingFile(2, function () {
+  //           creatingFile(3, 3, function () {
+  //             deletingFile(3, function () {
+  //               console.log("successfully completed using call backs");
+  //             });
+  //           });
+  //         });
+  //       });
+  //     });
+  //   });
+  // });
+  creatingDir(dir, function () {
+    recursiveCall(1, numOfFiles);
   });
 }
 module.exports = callback;
